@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import firebase from "firebase/app";
-import "firebase/firestore";
+import firestore from "firebase/firestore";
 
 function App() {
     // Firebase SDK Initialization
@@ -73,7 +73,40 @@ function App() {
         const callDoc = firestore.collection();
     };
 
-    return <div className="App">${firebaseConfig.apiKey}</div>;
+    return (
+        <div className="App">
+            <h2>1. Start your Webcam</h2>
+            <div className="videos">
+                <span>
+                    <h3>Local Stream</h3>
+                    <video id="webcamVideo" autoPlay playsInline></video>
+                </span>
+                <span>
+                    <h3>Remote Stream</h3>
+                    <video id="remoteVideo" autoPlay playsInline></video>
+                </span>
+            </div>
+            <button id="webcamButton">Start Webcam</button>
+
+            <h2>2. Create a new Call</h2>
+            <button id="callButton" disabled>
+                Create Call (offer)
+            </button>
+
+            <h2>3. Join a Call</h2>
+            <p>Answer the call from a different browser window or device.</p>
+            <input id="callInput" />
+            <button id="answeButton" disabled>
+                Answer
+            </button>
+
+            <h2>4. Hangup</h2>
+
+            <button id="hangupButton" disabled>
+                Hangup
+            </button>
+        </div>
+    );
 }
 
 export default App;
